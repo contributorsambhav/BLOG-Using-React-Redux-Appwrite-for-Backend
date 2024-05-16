@@ -49,16 +49,37 @@ class Service {
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug,
-            
+
             )
-        return true
+            return true
+        } catch (error) {
+            console.log(error)
+            return false
+        }
+    }
+
+    async getPost(slug) {
+        try {
+            return await this.databases.getDocument(conf.appwriteDatabaseId, conf.appwriteCollectionId, slug)
         } catch (error) {
             console.log(error)
         }
-        return false
+    }
+
+    async getPosts(queries = [Query.equal("status", "active")]) {
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId
+            )
+        } catch (error) {
+            console.log(error)
+
+        }
     }
 
 }
+
 
 
 const service = new Service()
