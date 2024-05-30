@@ -27,8 +27,8 @@ function Login() {
   };
 
   return (
-    <div className='flex items-center justify-center py-16 bg-gray-200 dark:bg-gray-700'>
-      <div className={`mx-auto w-full max-w-lg bg-gray-200 rounded-xl shadow-2xl shadow-violet-500 dark:bg-gray-900  p-10 border border-black/10`}>
+    <div className='flex pt-10  pb-28 items-center justify-center bg-gray-200 dark:bg-gray-700'>
+      <div className={`mx-auto w-full max-w-lg bg-gray-200 rounded-xl shadow-2xl shadow-violet-400 dark:bg-gray-900  p-10 border border-black/10`}>
         <div className='mb-4 text-center'>
           <Logo width='100' />
         </div>

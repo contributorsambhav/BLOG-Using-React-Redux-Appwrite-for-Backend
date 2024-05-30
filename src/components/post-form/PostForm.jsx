@@ -65,6 +65,7 @@ export default function PostForm({ post }) {
             if (name === "title") {
                 setValue("slug", slugTransform(value.title), { shouldValidate: true });
             }
+            console.log(post);
         });
 
         return () => subscription.unsubscribe();
@@ -72,7 +73,7 @@ export default function PostForm({ post }) {
 
     return (
         <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-            <div className="w-2/3 px-2">
+            <div className="w-2/3 px-10">
                 <Input
                     label="Title :"
                     placeholder="Title"
@@ -113,8 +114,9 @@ export default function PostForm({ post }) {
                     className="mb-4"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
-                    {post ? "Update" : "Submit"}
+                <Button type="submit" className={'border-solid border-[0.2px] text-slate-200 dark:border-gray-300  border-gray-600 mt-10 text-2xl w-full cursor-pointer'}
+                    bgColor={post ? "bg-green-600 hover:bg-green-700" : "bg-blue-600 hover:bg-blue-700"} >
+                    {post ? "Update" : "Create Post"}
                 </Button>
             </div>
         </form>

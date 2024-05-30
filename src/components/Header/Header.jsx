@@ -36,7 +36,7 @@ function Header() {
 
 
   return (
-    <header className='py-3 shadow bg-blue-200 border-1 border-black dark:bg-gray-900'>
+    <header className='py-3 shadow bg-gray-100  dark:bg-gray-900'>
       <Container>
         <nav className='flex items-center justify-between'>
           <div className='mr-4'>
@@ -71,20 +71,21 @@ function Header() {
                 <li key={item.name} className='md:inline-block'>
                   <button
                     onClick={() => navigate(item.slug)}
-                    className='text-2xl block px-6 py-2 duration-200 hover:bg-blue-500 dark:hover:bg-gray-700 rounded-full text-gray-100'
+                    className='text-2xl block px-8 py-2 duration-200 hover:bg-blue-200 dark:hover:bg-gray-700 rounded-full text-gray-700 dark:text-gray-100'
                   >
                     {item.name}
                   </button>
                 </li>
               ) : null
             )}
-            <li className='inline-block px-6 text-2xl py-2 hover:duration-5000 hover:bg-blue-500 dark:hover:bg-gray-700 rounded-full text-gray-100'>
+            <li className='text-gray-700  bg-inline-block px-8 text-2xl py-2 hover:duration-200 hover:bg-slate-700 hover:text-white dark:hover:bg-gray-700 rounded-full dark:text-gray-100'>
               <button onClick={handleToggle}>Toggle</button>
             </li>
             {authStatus && (
-              <li className='inline-block px-6 text-xl py-2 duration-500 hover:bg-blue-400 dark:hover:bg-gray-700 rounded-full text-white'>
-                <LogoutBtn />
-              </li>
+              <li className='dark:text-gray-100 inline-block px-8 text-xl py-2 duration-200 hover:bg-red-500 hover:text-gray-100 rounded-full'>
+              <LogoutBtn />
+            </li>
+            
             )}
           </ul>
         </nav>

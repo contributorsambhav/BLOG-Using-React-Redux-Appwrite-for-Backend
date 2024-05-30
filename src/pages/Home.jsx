@@ -15,11 +15,11 @@ function Home() {
   
     if (posts.length === 0) {
         return (
-            <div className="w-full py-8 bg-gray-200 dark:bg-gray-500 text-center">
+            <div className="w-full py-8 h-[62.3vh] align-middle  bg-gray-200 dark:bg-gray-500 text-center">
                 <Container>
-                    <div className="flex flex-wrap">
+                    <div className="flex  mt-[20vh] flex-wrap">
                         <div className="p-2 w-full">
-                            <h1 className="text-2xl dark:text-white font-bold hover:text-gray-500">
+                            <h1 className="text-4xl dark:text-white font-semibold hover:text-gray-500">
                                 No Posts to view
                             </h1>
                         </div>
