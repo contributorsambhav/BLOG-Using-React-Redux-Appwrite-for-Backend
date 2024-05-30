@@ -5,6 +5,8 @@ import { Button, Input, Logo } from './index';
 import { useDispatch } from 'react-redux';
 import authService from '../appwrite/auth';
 import { useForm } from 'react-hook-form';
+import image from './logo.jpg'
+
 
 function Login() {
   const navigate = useNavigate();
@@ -29,8 +31,8 @@ function Login() {
   return (
     <div className='flex pt-10  pb-28 items-center justify-center bg-gray-200 dark:bg-gray-700'>
       <div className={`mx-auto w-full max-w-lg bg-gray-200 rounded-xl shadow-2xl shadow-violet-400 dark:bg-gray-900  p-10 border border-black/10`}>
-        <div className='mb-4 text-center'>
-          <Logo width='100' />
+        <div className='mb-4 mx-auto w-[60%] text-center'>
+        <img src={image} alt=""  />
         </div>
         <h2 className='text-center text-2xl font-bold text-gray-800 dark:text-white'>Sign in to your account</h2>
         <p className='mt-2 text-center text-sm text-gray-600 dark:text-gray-400'>
