@@ -25,14 +25,12 @@ function App() {
   }, [])
   
   return !loading ? (
-    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
-      <div className='w-full block'>
-        <Header />
-        <main>
+    <div className='min-h-screen flex flex-col bg-gray-400'>
+      <Header />
+      <main className="flex-grow bg-gray-200 dark:bg-gray-700">
         <Outlet />
-        </main>
-        <Footer />
-      </div>
+      </main>
+      <Footer className="fixed bottom-0 w-full" />
     </div>
   ) : null
 }

@@ -89,7 +89,9 @@ export default function PostForm({ post }) {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                     }}
                 />
-                <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+                <div className="inline-block mb-1 pl-1 text-gray-800 dark:text-gray-200">Content:</div>
+
+                <RTE name="content" control={control} defaultValue={getValues("content")} />
             </div>
             <div className="w-1/3 px-2">
                 <Input
@@ -108,15 +110,16 @@ export default function PostForm({ post }) {
                         />
                     </div>
                 )}
+                <div className="inline-block mb-1 pl-1 text-gray-800 dark:text-gray-200">Status:</div>
                 <Select
                     options={["active", "inactive"]}
                     label="Status"
                     className="mb-4"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" className={'border-solid border-[0.2px] text-slate-200 dark:border-gray-300  border-gray-600 mt-10 text-2xl w-full cursor-pointer'}
+                <Button type="submit" className={'border-solid border-[0.2px] text-slate-50 dark:border-gray-300  border-gray-600 mt-10 text-2xl w-full cursor-pointer'}
                     bgColor={post ? "bg-green-600 hover:bg-green-700" : "bg-blue-600 hover:bg-blue-700"} >
-                    {post ? "Update" : "Create Post"}
+                    {post ? "Update Post" : "Create New Post"}
                 </Button>
             </div>
         </form>

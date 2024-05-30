@@ -1,22 +1,22 @@
-import React from 'react'
-import {Container, Logo, LogoutBtn} from '../index'
-import { Link } from 'react-router-dom'
-import {useSelector , useDispatch} from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { modeToggle } from '../../store/themeSlice'; 
+import React from 'react';
+import { Container, Logo, LogoutBtn } from '../index';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { modeToggle } from '../../store/themeSlice';
 
 function Header() {
   const themeMode = useSelector((state) => state.themeMode.theme);
-  const authStatus = useSelector((state) => state.auth.status)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const authStatus = useSelector((state) => state.auth.status);
+  const activeUser = useSelector((state) => state.auth.userData);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
     document.querySelector('html').classList.remove('light', 'dark');
     document.querySelector('html').classList.add(themeMode);
   }, [themeMode]);
-
 
   const handleToggle = () => {
     dispatch(modeToggle());
@@ -29,14 +29,13 @@ function Header() {
   const navItems = [
     { name: 'Home', slug: '/', active: true },
     { name: 'Login', slug: '/login', active: !authStatus },
-    { name: 'Signup', slug: '/signup', active: !authStatus },
-    { name: 'All Posts', slug: '/all-posts', active: authStatus },
+    { name: 'Sign Up', slug: '/signup', active: !authStatus },
+    { name: 'My Posts', slug: '/all-posts', active: authStatus },
     { name: 'Add Post', slug: '/add-post', active: authStatus },
   ];
 
-
   return (
-    <header className='py-3 shadow bg-blue-600  dark:bg-gray-900'>
+    <header className='py-3 shadow bg-green-700 dark:bg-gray-900'>
       <Container>
         <nav className='flex items-center justify-between'>
           <div className='mr-4'>
@@ -51,7 +50,7 @@ function Header() {
             >
               <svg
                 className='w-6 h-6'
-                fill='none'
+                fill='white'
                 stroke='currentColor'
                 viewBox='0 0 24 24'
                 xmlns='http://www.w3.org/2000/svg'
@@ -64,31 +63,38 @@ function Header() {
                 />
               </svg>
             </button>
+            
           </div>
+          {activeUser && (
+              <div className='text-white text-balance text-3xl dark:text-gray-100'>
+                {activeUser.name}
+              </div>
+            )}
+
           <ul className={`flex-col md:flex-row md:flex ml-auto ${isMobileMenuOpen ? 'flex' : 'hidden'} md:flex`}>
             {navItems.map((item) =>
               item.active ? (
                 <li key={item.name} className='md:inline-block'>
                   <button
                     onClick={() => navigate(item.slug)}
-                    className='text-2xl block px-8 py-2 duration-200 hover:bg-blue-200 dark:hover:bg-gray-700 rounded-full text-gray-700 dark:text-gray-100'
+                    className='text-2xl block px-8 py-2 duration-200 hover:bg-blue-500 dark:hover:bg-gray-700 rounded-full text-white dark:text-gray-100'
                   >
                     {item.name}
                   </button>
                 </li>
               ) : null
             )}
-            <li className='text-gray-700  bg-inline-block px-8 text-2xl py-2 hover:duration-200 hover:bg-slate-700 hover:text-white dark:hover:bg-gray-700 rounded-full dark:text-gray-100'>
+            <li className='text-white bg-inline-block px-8 text-2xl py-2 hover:duration-200 hover:bg-slate-700 hover:text-white dark:hover:bg-gray-700 rounded-full dark:text-gray-100'>
               <button onClick={handleToggle}>Toggle</button>
             </li>
             {authStatus && (
-              <li className='dark:text-gray-100 inline-block px-8 text-xl py-2 duration-200 hover:bg-red-500 hover:text-gray-100 rounded-full'>
-              <LogoutBtn />
-            </li>
-            
+              <li className='text-white dark:text-gray-100 inline-block px-8 text-xl py-2 duration-200 hover:bg-red-500 hover:text-gray-100 rounded-full'>
+                <LogoutBtn />
+              </li>
             )}
           </ul>
         </nav>
+
       </Container>
     </header>
   );

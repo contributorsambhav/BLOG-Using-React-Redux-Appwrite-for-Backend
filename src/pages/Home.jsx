@@ -20,7 +20,7 @@ function Home() {
                     <div className="flex  mt-[20vh] flex-wrap">
                         <div className="p-2 w-full">
                             <h1 className="text-4xl dark:text-white font-semibold hover:text-gray-500">
-                                No Posts to view
+                                Login to view Posts
                             </h1>
                         </div>
                     </div>

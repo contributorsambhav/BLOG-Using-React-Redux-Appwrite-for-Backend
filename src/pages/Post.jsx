@@ -4,6 +4,8 @@ import appwriteService from "../appwrite/config";
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 export default function Post() {
     const [post, setPost] = useState(null);
@@ -33,9 +35,9 @@ export default function Post() {
     };
 
     return post ? (
-        <div className="py-8">
+        <div className="w-[70%] mx-auto my-4 p-16 rounded-3xl bg-slate-200 dark:text-gray-200 dark:bg-slate-900">
             <Container>
-                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+                <div className="w-full flex justify-center mb-4 relative border shadow-inner shadow-lime-200 rounded-xl p-8">
                     <img
                         src={appwriteService.getFilePreview(post.featuredImage)}
                         alt={post.title}
@@ -43,24 +45,26 @@ export default function Post() {
                     />
 
                     {isAuthor && (
-                        <div className="absolute right-6 top-6">
-                            <Link to={`/edit-post/${post.$id}`}>
-                                <Button bgColor="bg-green-500" className="mr-3">
-                                    Edit
+                        <div className="absolute right-6 w-[30%] top-6 flex flex-wrap sm:flex-nowrap">
+                            <Link to={`/edit-post/${post.$id}`} className="w-full sm:w-1/2 pr-1">
+                                <Button bgColor="bg-green-600 hover:bg-green-700" className="text-wrap text-2xl w-full h-12 mb-2 sm:mb-0">
+                                    <FontAwesomeIcon icon={faEdit} />
                                 </Button>
                             </Link>
-                            <Button bgColor="bg-red-500" onClick={deletePost}>
-                                Delete
-                            </Button>
+                            <div className="w-full sm:w-1/2 pl-1">
+                                <Button className="text-2xl w-full h-12" bgColor="bg-red-600 hover:bg-red-700" onClick={deletePost}>
+                                    <FontAwesomeIcon icon={faTrashAlt} />
+                                </Button>
+                            </div>
                         </div>
                     )}
                 </div>
                 <div className="w-full mb-6">
-                    <h1 className="text-2xl font-bold">{post.title}</h1>
+                    <h1 className="text-center text-4xl mt-4 font-bold">{post.title}</h1>
                 </div>
-                <div className="browser-css">
+                <div className="text-2xl browser-css">
                     {parse(post.content)}
-                    </div>
+                </div>
             </Container>
         </div>
     ) : null;

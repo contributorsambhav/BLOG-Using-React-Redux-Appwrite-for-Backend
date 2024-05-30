@@ -18,7 +18,7 @@ const Input = React.forwardRef(function Input({
       )}
       <input
         type={type}
-        className={`px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-black dark:text-white outline-none focus:bg-white dark:focus:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-700 w-full duration-200 ${className}`}
+        className={`px-3 py-2 dark:hover:bg-slate-50 rounded-lg bg-gray-100 dark:bg-slate-200 text-black focus:bg-gray-50 dark:text-gray-800 outline-none hover:bg-gray-50 border border-gray-300 dark:border-gray-700 w-full duration-200 ${className}`}
         ref={ref}
         {...props}
         id={id}
