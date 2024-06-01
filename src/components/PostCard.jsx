@@ -5,14 +5,14 @@ import appwriteService from "../appwrite/config";
 function PostCard({ $id, title, featuredImage }) {
   return (
     <Link to={`/post/${$id}`} className="block w-full">
-      <div className="bg-gray-800 dark:bg-slate-500 rounded-xl  items-center shadow-lg shadow-red-600 dark:shadow-amber-500 overflow-hidden">
+      <div className="text-xl text-center text-gray-700 hover:text-gray-900 dark:hover:text-white dark:text-gray-200  bg-gray-500 hover:scale-105 mx-3 hover:shadow-blue-600 dark:hover:shadow-orange-500 shadow-md px-1 pt-2  dark:bg-slate-400 rounded-xl  items-center overflow-hidden">
         <img
           src={appwriteService.getFilePreview(featuredImage)}
           alt={title}
-          className="object-cover w-fit mx-auto h-48 md:h-64"
+          className="object-fit w-fit mx-auto h-36 md:h-48"
         />
-        <div className="p-4">
-          <h2 className="text-xl text-center text-gray-100 dark:text-white font-bold mb-2">{title}</h2>
+        <div className="bg-blue-300 dark:text-white dark:bg-slate-600 scale-110 p-3">
+          <h2 className="font-bold mb-2">{title}</h2>
         </div>
       </div>
     </Link>

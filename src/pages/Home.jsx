@@ -13,7 +13,7 @@ function Home() {
         })
     }, [])
   
-    if (posts.length === 0) {
+    if (posts && posts.length === 0) {
         return (
             <div className="w-full py-8 h-[62.3vh] align-middle  bg-gray-200 dark:bg-gray-500 text-center">
                 <Container>
@@ -28,9 +28,12 @@ function Home() {
             </div>
         )
     }
+    if (posts){
     return (
         <div className='w-full py-8 dark:bg-gray-700'>
             <Container>
+            <div className="p-3 dark:text-white text-slate-800 font-semibold text-5xl m-8  text-center">See what community is posting...</div>
+
                 <div className='flex flex-wrap'>
                     {posts.map((post) => (
                         <div key={post.$id} className='p-2 w-1/4'>
@@ -40,7 +43,7 @@ function Home() {
                 </div>
             </Container>
         </div>
-    )
+    )}
 }
 
 export default Home

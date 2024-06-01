@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { modeToggle } from '../../store/themeSlice';
+import dark from '../SVGs/darkmode.svg'
+import light from '../SVGs/lightmode.svg'
 
 function Header() {
   const themeMode = useSelector((state) => state.themeMode.theme);
@@ -63,13 +65,13 @@ function Header() {
                 />
               </svg>
             </button>
-            
+
           </div>
           {activeUser && (
-              <div className='text-white text-balance text-3xl dark:text-gray-100'>
-                {activeUser.name}
-              </div>
-            )}
+            <div className='text-white text-balance text-3xl dark:text-gray-100'>
+              {activeUser.name}
+            </div>
+          )}
 
           <ul className={`flex-col md:flex-row md:flex ml-auto ${isMobileMenuOpen ? 'flex' : 'hidden'} md:flex`}>
             {navItems.map((item) =>
@@ -84,14 +86,21 @@ function Header() {
                 </li>
               ) : null
             )}
-            <li className='text-white bg-inline-block px-8 text-2xl py-2 hover:duration-200 hover:bg-slate-700 hover:text-white dark:hover:bg-gray-700 rounded-full dark:text-gray-100'>
-              <button onClick={handleToggle}>Toggle</button>
-            </li>
+
             {authStatus && (
               <li className='text-white dark:text-gray-100 inline-block px-8 text-xl py-2 duration-200 hover:bg-red-500 hover:text-gray-100 rounded-full'>
                 <LogoutBtn />
               </li>
             )}
+            <li className='text-white bg-inline-block px-8 text-2xl py-2 hover:duration-200 hover:bg-slate-700 hover:text-white dark:hover:bg-gray-700 rounded-full dark:text-gray-100'>
+              {themeMode == 'dark' ? (<button onClick={handleToggle}>
+                <img className="mt-1" src={light} alt="" />
+              </button>) : (<button onClick={handleToggle}>
+                <img className="mt-2" src={dark} alt="" />
+              </button>)}
+
+            </li>
+
           </ul>
         </nav>
 
