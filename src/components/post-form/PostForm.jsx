@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
@@ -14,31 +14,36 @@ export default function PostForm({ post }) {
             status: post?.status || "active",
         },
     });
-
+    const [titleLength, setTitleLength] = useState(post?.title?.length || 0)
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
 
     const submit = async (data) => {
-        if (post) {
-            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+        const file = data.image[0];
+        if (file && file.size > 1048576) {
+            throw new Error("File size should be less than 1 MB");
+        }
 
-            if (file) {
+        if (post) {
+            const uploadedFile = file ? await appwriteService.uploadFile(file) : null;
+
+            if (uploadedFile) {
                 appwriteService.deleteFile(post.featuredImage);
             }
 
             const dbPost = await appwriteService.updatePost(post.$id, {
                 ...data,
-                featuredImage: file ? file.$id : undefined,
+                featuredImage: uploadedFile ? uploadedFile.$id : undefined,
             });
 
             if (dbPost) {
                 navigate(`/post/${dbPost.$id}`);
             }
         } else {
-            const file = await appwriteService.uploadFile(data.image[0]);
+            const uploadedFile = await appwriteService.uploadFile(file);
 
-            if (file) {
-                const fileId = file.$id;
+            if (uploadedFile) {
+                const fileId = uploadedFile.$id;
                 data.featuredImage = fileId;
                 const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
 
@@ -63,6 +68,8 @@ export default function PostForm({ post }) {
     React.useEffect(() => {
         const subscription = watch((value, { name }) => {
             if (name === "title") {
+                const newTitleLength = value.title?.length || 0;
+                setTitleLength(newTitleLength);
                 setValue("slug", slugTransform(value.title), { shouldValidate: true });
             }
             console.log(post);
@@ -71,6 +78,11 @@ export default function PostForm({ post }) {
         return () => subscription.unsubscribe();
     }, [watch, slugTransform, setValue]);
 
+    const handleTitleChange = (event) => {
+        const newTitle = event.target.value;
+        setValue("title", newTitle, { shouldValidate: true });
+        setTitleLength(newTitle.length);
+    };
     return (
         <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
             <div className="w-2/3 px-10">
@@ -78,8 +90,21 @@ export default function PostForm({ post }) {
                     label="Title :"
                     placeholder="Title"
                     className="mb-4"
-                    {...register("title", { required: true })}
+                    {...register("title", {
+                        required: true,
+                        maxLength: 35,
+                        validate: (value) => value.length <= 35 || "Title cannot exceed 35 characters",
+                    })}
+                    onChange={handleTitleChange}
                 />
+
+                <div className="text-right dark:text-white  limit">
+                    {titleLength}/{35} 
+                    {(titleLength>35?(
+                        <div className="text-red-600">Character limit exceeded</div>
+                    ):(null))}
+                </div>
+
                 <Input
                     label="Slug :"
                     placeholder="Slug"
@@ -90,7 +115,6 @@ export default function PostForm({ post }) {
                     }}
                 />
                 <div className="inline-block mb-1 pl-1 text-gray-800 dark:text-gray-200">Content:</div>
-
                 <RTE name="content" control={control} defaultValue={getValues("content")} />
             </div>
             <div className="w-1/3 px-2">
@@ -117,7 +141,7 @@ export default function PostForm({ post }) {
                     className="mb-4"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" className={'border-solid border-[0.2px] text-slate-50 dark:border-gray-300  border-gray-600 mt-10 text-2xl w-full cursor-pointer'}
+                <Button type="submit" className={'border-solid border-[0.2px] text-slate-50 dark:border-gray-300 border-gray-600 mt-10 text-2xl w-full cursor-pointer'}
                     bgColor={post ? "bg-green-600 hover:bg-green-700" : "bg-blue-600 hover:bg-blue-700"} >
                     {post ? "Update Post" : "Create New Post"}
                 </Button>
