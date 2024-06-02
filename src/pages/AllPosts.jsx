@@ -26,7 +26,7 @@ function AllPosts() {
         return (
             <div className='w-full bg-gray-200 dark:bg-gray-700 '>
                 <Container className="min-h-[70vh]">
-                    <div className="p-3 dark:text-white text-slate-800 font-semibold text-5xl m-8 text-center">My Posts</div>
+                    <div className="p-3 dark:text-white text-slate-800 font-semibold text-3xl m-8 text-center">My Posts</div>
                     <div className='flex flex-wrap '>
                         <p>Request timed out ! <br></br>
                         Reload page to view posts
@@ -40,10 +40,10 @@ function AllPosts() {
     return (
         <div className='w-full bg-gray-200 dark:bg-gray-700 '>
             <Container className="min-h-[70vh]">
-                <div className="p-3 dark:text-white text-slate-800 font-semibold text-5xl m-8 text-center">My Posts</div>
+                <div className="p-3 dark:text-white text-slate-800 font-semibold text-3xl m-8 text-center">My Posts</div>
                 <div className='flex flex-wrap '>
                     {loading ? (
-                        <p className='mx-auto mt-8 dark:text-teal-100 text-4xl'>Loading posts...</p>
+                        <p className='mx-auto mt-8 dark:text-teal-100 text-2xl'>Loading posts...</p>
                     ) : (
                         posts.map((post) => (
                             post.userId === userData.$id ? (

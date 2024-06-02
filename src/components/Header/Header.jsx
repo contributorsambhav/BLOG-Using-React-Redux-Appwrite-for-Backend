@@ -82,7 +82,7 @@ function Header() {
                   <li key={item.name} className="align-center md:inline-block">
                     <button
                       onClick={() => navigate(item.slug)}
-                      className="text-2xl block px-4 py-2 duration-200 hover:bg-blue-500 dark:hover:bg-gray-700 rounded-full text-white dark:text-gray-100"
+                      className="sm:text-xl md:text-2xl block px-4 py-2 duration-200 hover:bg-blue-500 dark:hover:bg-gray-700 rounded-full text-white dark:text-gray-100"
                     >
                       {item.name}
                     </button>
@@ -90,7 +90,7 @@ function Header() {
                 ) : null
               )}
               {authStatus && (
-                <li className=" text-white dark:text-gray-100 inline-block px-4 text-xl py-2 duration-200 hover:bg-red-500 hover:text-gray-100 rounded-full">
+                <li className=" text-white dark:text-gray-100 items-left inline-block py-2 duration-200 hover:bg-red-500 hover:text-gray-100 rounded-full">
                   <LogoutBtn />
                 </li>
               )}

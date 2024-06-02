@@ -12,7 +12,7 @@ function LogoutBtn() {
     }
   return (
     <button
-    className='inline-bock  duration-500 text-2xl rounded-full'
+    className='inline-bock px-4 duration-500 sm:text-xl md:text-2xl text-left items-start rounded-full'
     onClick={logoutHandler}
     >Logout</button>
   )

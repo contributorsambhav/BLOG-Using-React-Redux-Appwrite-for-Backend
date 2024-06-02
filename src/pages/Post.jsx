@@ -41,7 +41,7 @@ export default function Post() {
     return post ? (
         <div className="sm:w-[100%] md:w-[90%] lg:w-[80%] mx-auto my-4 p-[2vw] rounded-3xl bg-slate-300 text-gray-900 dark:text-gray-200 dark:bg-slate-900">
             <Container>
-                <div className="w-full flex justify-center mb-4 relative border border-gray-300 dark:border-gray-700 shadow-xl   shadow-gray-500 dark:shadow-lime-800 rounded-xl p-8 bg-white dark:bg-gray-800">
+                <div className="w-full flex justify-center mb-4 relative border border-gray-300 dark:border-gray-700 shadow-xl   shadow-gray-500 dark:shadow-lime-800 rounded-xl p-[1vw] bg-white dark:bg-gray-800">
                     <img
                         src={appwriteService.getFilePreview(post.featuredImage)}
                         alt={post.title}
