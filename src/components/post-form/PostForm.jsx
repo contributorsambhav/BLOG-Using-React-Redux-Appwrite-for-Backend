@@ -85,7 +85,7 @@ export default function PostForm({ post }) {
     };
     return (
         <form onSubmit={handleSubmit(submit)} className="lg:flex lg:flex-wrap">
-            <div className="lg:w-2/3 px-10">
+            <div className="lg:w-2/3 lg:px-10">
                 <Input
                     label="Title :"
                     placeholder="Title"
