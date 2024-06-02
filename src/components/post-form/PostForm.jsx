@@ -84,8 +84,8 @@ export default function PostForm({ post }) {
         setTitleLength(newTitle.length);
     };
     return (
-        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-            <div className="w-2/3 px-10">
+        <form onSubmit={handleSubmit(submit)} className="lg:flex lg:flex-wrap">
+            <div className="lg:w-2/3 px-10">
                 <Input
                     label="Title :"
                     placeholder="Title"
@@ -117,7 +117,7 @@ export default function PostForm({ post }) {
                 <div className="inline-block mb-1 pl-1 text-gray-800 dark:text-gray-200">Content:</div>
                 <RTE name="content" control={control} defaultValue={getValues("content")} />
             </div>
-            <div className="w-1/3 px-2">
+            <div className="lg:w-1/3 px-2">
                 <Input
                     label="Featured Image :"
                     type="file"
