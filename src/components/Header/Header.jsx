@@ -38,7 +38,7 @@ function Header() {
 
   return (
     <>
-      <div className="bg-gray-600 dark:bg-green-800 w-full text-white text-4xl font-bold dark:text-gray-100 text-center py-2">
+      <div className="bg-green-800 dark:bg-green-900 w-full text-white text-4xl font-bold dark:text-gray-100 text-center py-2">
         DocuSharp
       </div>
       <header className="py-1 shadow bg-green-700 dark:bg-gray-900">
